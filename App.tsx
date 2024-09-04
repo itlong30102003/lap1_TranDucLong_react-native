@@ -10,7 +10,7 @@ import Project8 from "./component/Project8";
 const App = ()=>{
   return(
     <View style={myStyle.container}>
-      {/* <Project1/> */}
+      {/* <Project1/>   */}
       {/* <Project2/> */}
       {/* <Project3/> */}
       {/* <Project4/> */}
