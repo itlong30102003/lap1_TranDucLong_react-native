@@ -9,6 +9,7 @@ import Project7 from "./component/Project7";
 import Project8 from "./component/Project8";
 const App = ()=>{
   return(
+    //Hello
     <View style={myStyle.container}>
       {/* <Project1/>    */}
       {/* <Project2/> */}
