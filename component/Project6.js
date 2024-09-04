@@ -25,6 +25,6 @@ export default () => {
             {data.map((item, index) => (
                 <Square key={item} text={`Square ${index +1}`}/>
         ))}
-        </ScrollView>
+        </ScrollView>  
     )
 }
