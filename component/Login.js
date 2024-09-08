@@ -1,95 +1,101 @@
-import { useState } from "react"
-import { Button, ImageBackground, StyleSheet, Text, TextInput, View } from "react-native";
-import { Checkbox } from "react-native-paper";
+import { useState } from "react";
+import { Alert, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
-const Login = () =>{
-    const [inputUsername, setInputUsername] = useState("");
-    const [inputPassword, setInputPassword] = useState("");
 
-    const [checked, setChecked] = useState(false);
+const Login=() =>{
+    const [userName, setUserName] = useState("");
+    const [password, setPassword] = useState("");
 
-    const handleLogin = () => {
-        // Thêm logic kiểm tra username và password tại đây
-        if (inputUsername === "" || inputPassword === "") {
-            setErrorMessage("Username và Password không được để trống");
-        } else {
-            // Gửi thông tin đăng nhập
-            console.log("Username:", inputUsername);
-            console.log("Password:", inputPassword);
-            setErrorMessage(""); // Xóa thông báo lỗi nếu nhập hợp lệ
-        }
-    };
-    
+    const onPress =()=>{
+        Alert.alert('Login Info', `User Name: ${userName}\nPassword: ${password}`)
+    }   
     return(
         <View style={myStyle.container}>
-            <ImageBackground>
-                <Text style={myStyle.title}>Sign In</Text>
 
-                <TextInput
-                    style={myStyle.input}
-                    placeholder="Username"r
-                    value={inputUsername}
-                    onChangeText={setInputUsername}
-                />
+            <ImageBackground source={require('../image/BGLogin.png')} resizeMode="cover" style={myStyle.image}>
+                
+                <View style={myStyle.formLogin}>
+                    
+                    <View style={{alignItems:'center'}}> 
+                        <Text style={{...myStyle.title, fontSize:45}}> Sign In </Text>
+                    </View>
+                
+                    <Text style={myStyle.title}> User Name </Text>
+                    <TextInput
+                        style={myStyle.input}
+                        placeholder="User Name"
+                        placeholderTextColor="#aaa"
+                        keyboardType="default"
+                        value={userName}
+                        onChangeText={setUserName}
+                    />
+                    <Text style={myStyle.title}> Password </Text>
+                    <TextInput
+                        style={myStyle.input}
+                        placeholder="Password"
+                        placeholderTextColor="#aaa"
+                        secureTextEntry
+                        value={password}
+                        onChangeText={setPassword}
+                    />  
+                    <View style={{alignItems:'center'}}>
+                        <TouchableOpacity style={myStyle.button} onPress={onPress}>
+                            <Text style={myStyle.buttonText}>Login</Text>
+                        </TouchableOpacity>
+                    </View>
 
-                <TextInput
-                    style={myStyle.input}
-                    placeholder="Password"
-                    value={inputPassword}
-                    onChangeText={setInputPassword}
-                    secureTextEntry={true}
-                />
-                <Checkbox
-                    status={checked ? 'checked':'unchecked'}    
-                    onPress={() => {
-                        setChecked(true);
-                    }}
-                />
-                <Button title="Login" onPress={handleLogin} />
-
+                </View>
             </ImageBackground>
-            <View style={myStyle.FormLogin}>
-
-             
-            </View>
         </View>
     )
 }
 
+
 export default Login;
 
-const myStyle = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor:"black",
-        justifyContent: "center",
-        alignItems: "center",
-    },
-    
-    FormLogin: {
-        width: "80%",
-        padding: 20,
-        backgroundColor: "rgba(255, 255, 255, 0.8)",
-        borderRadius: 10,
-    },
-    title: {
-        fontSize: 24,
-        color:"black",
-        fontWeight: "bold",
-        textAlign: "center",
-        marginBottom: 20,
-    },
-    input: {
-        height: 40,
-        borderColor: "black",
-        borderWidth: 1,
-        marginBottom: 20,
-        paddingHorizontal: 10,
-        borderRadius: 5,
-    },
-    error: {
-        color: "red",
-        marginBottom: 20,
-        textAlign: "center",
-    },
-});
+
+const myStyle = StyleSheet.create(
+    {
+        container: {
+            flex: 1,
+          },
+        image: {
+            flex: 1,
+            justifyContent: 'center',
+            alignItems:'center'
+          },
+        formLogin: {
+            backgroundColor: "rgba(217, 221, 232, 0.2)",
+            width: '90%',
+            height: '50%',
+            justifyContent: 'center',
+            borderRadius: 20,
+            padding: 20,
+        },
+        title: {
+            color: 'white',
+            fontSize: 30,
+            },
+        input: {
+            width: '100%',
+            height: 50,
+            backgroundColor: 'white',
+            borderRadius: 10,
+            paddingHorizontal: 10,
+            marginBottom: 15,
+            },
+        button: {
+            width:'60%',
+            height: 45,
+            backgroundColor: '#58C4DC',
+            justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 20,
+            },
+        buttonText: {
+            fontSize:18,
+            color:'white'
+        }
+            
+    }
+)
